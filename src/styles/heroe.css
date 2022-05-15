@@ -1,0 +1,7 @@
+.valid-configurator {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 10px;
+    align-items: center;
+}
