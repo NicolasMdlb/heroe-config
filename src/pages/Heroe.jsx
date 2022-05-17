@@ -25,12 +25,16 @@ const Heroe = () => {
     });
   };
 
+  const skillPointsHandler = (num, skill) => {
+    console.log("faire les skils");
+  }
+
   return (
     <>
       <Header>{titleHeader}</Header>
       <div className={styles.configurator}>
-        <Person {...person} points={pointAvailable} changeImage={imageHandler} />
-        <div>Chois de l'arme</div>
+        <Person {...person} points={pointAvailable} changeImage={imageHandler} changeSkills={skillPointsHandler} />
+        <div>Choix de l'arme</div>
       </div>
       <div className={styles.validPerson}>
         <Button styles="delete" click={() => alert("init")}>
