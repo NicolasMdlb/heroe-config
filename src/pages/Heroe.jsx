@@ -15,25 +15,52 @@ const Heroe = () => {
 
   /**
    * Gestion de la sélection de l'image du personnage !!! att: Aujourd'hui il y a que trois images
-   * @param {number} num 
+   * @param {number} num valeur de 1 soit positive ou négative
    */
   const imageHandler = (num) => {
-    setPerson(oldPerson => {
-      const newPerson = {...oldPerson}
-      newPerson.image = oldPerson.image + num > 3 ? 1 : oldPerson.image + num < 1 ? 3 : oldPerson.image + num; 
+    setPerson((oldPerson) => {
+      const newPerson = { ...oldPerson };
+      newPerson.image =
+        oldPerson.image + num > 3
+          ? 1
+          : oldPerson.image + num < 1
+          ? 3
+          : oldPerson.image + num;
       return newPerson;
     });
   };
 
-  const skillPointsHandler = (num, skill) => {
-    console.log("faire les skils");
-  }
+  /**
+   * augmente
+   * @param {string} skill compétence à mettre à jour
+   * @param {number} num positif ou negatif à mettre à jour
+   */
+  const SkillPointsHandler = (num, skillChanging) => {
+    console.log(num, skillChanging);
+    setPerson((oldPerson) => {
+      const newPerson = { ...oldPerson };
+
+      if (oldPerson.skills[skillChanging] >= 5 || pointAvailable <= 0 || (pointAvailable === 7 && num === -1) )
+        return oldPerson;
+
+      newPerson.skills[skillChanging] = oldPerson.skills[skillChanging] + num;
+      setPointAvailable((oldPoints) => oldPoints - num);
+
+      return newPerson;
+    });
+  };
 
   return (
     <>
       <Header>{titleHeader}</Header>
       <div className={styles.configurator}>
-        <Person {...person} points={pointAvailable} changeImage={imageHandler} changeSkills={skillPointsHandler} />
+        <Person
+          {...person}
+          points={pointAvailable}
+          changeImage={imageHandler}
+          addSkills={SkillPointsHandler}
+          removecSkills={SkillPointsHandler}
+        />
         <div>Choix de l'arme</div>
       </div>
       <div className={styles.validPerson}>
