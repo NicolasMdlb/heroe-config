@@ -1,0 +1,2 @@
+# heroe-config
+configurator heroe 
