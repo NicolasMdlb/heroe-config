@@ -10,7 +10,7 @@ const Person = (props) => {
       </div>
       <div>
         <h4>Caractéristiques : </h4>
-        <SkillsPerson skills={props.skills} points={props.points} clickAdd={props.addSkills} clickRemove={props.removecSkills}/>
+        <SkillsPerson skills={props.skills} points={props.points} clickAdd={props.addSkills} clickRemove={props.removeSkills}/>
       </div>
     </>
   );

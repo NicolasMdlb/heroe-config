@@ -7,47 +7,50 @@ import { useState } from "react";
 const Heroe = () => {
   const titleHeader = "Configurer votre personnage";
   const [pointAvailable, setPointAvailable] = useState(7);
-  const [person, setPerson] = useState({
-    image: 1,
-    name: "toto",
-    skills: { agility: 0, brain: 0, power: 0 },
-  });
+  const [image, setImage] = useState(1);
+  const [name, setName] = useState("");
+  const [skills, setSkills] = useState({ agility: 0, brain: 0, power: 0 });
 
   /**
    * Gestion de la sélection de l'image du personnage !!! att: Aujourd'hui il y a que trois images
    * @param {number} num valeur de 1 soit positive ou négative
    */
   const imageHandler = (num) => {
-    setPerson((oldPerson) => {
-      const newPerson = { ...oldPerson };
-      newPerson.image =
-        oldPerson.image + num > 3
-          ? 1
-          : oldPerson.image + num < 1
-          ? 3
-          : oldPerson.image + num;
-      return newPerson;
+    setImage((oldImage) => {
+      let newImage = { ...oldImage };
+      newImage =
+        oldImage + num > 3 ? 1 : oldImage + num < 1 ? 3 : oldImage + num;
+      return newImage;
     });
   };
 
   /**
-   * augmente
+   * augmente la compétence
    * @param {string} skill compétence à mettre à jour
-   * @param {number} num positif ou negatif à mettre à jour
    */
-  const SkillPointsHandler = (num, skillChanging) => {
-    console.log(num, skillChanging);
-    setPerson((oldPerson) => {
-      const newPerson = { ...oldPerson };
+  const addSkillHandler = (skillChanging) => {
+    let newSkills = skills;
+    let newPoint = pointAvailable;
+    if (pointAvailable > 0 && skills[skillChanging] < 5) {
+      newSkills[skillChanging]++;
+      setSkills(newSkills);
+      setPointAvailable(newPoint - 1);
+    }
+  };
 
-      if (oldPerson.skills[skillChanging] >= 5 || pointAvailable <= 0 || (pointAvailable === 7 && num === -1) )
-        return oldPerson;
+  /**
+   * réduire la compétence
+   * @param {string} skill compétence à mettre à jour
+   */
+  const removeSkillHandler = (skillChanging) => {
+    let newSkills = skills;
+    let newPoint = pointAvailable;
 
-      newPerson.skills[skillChanging] = oldPerson.skills[skillChanging] + num;
-      setPointAvailable((oldPoints) => oldPoints - num);
-
-      return newPerson;
-    });
+    if (pointAvailable <= 7 && skills[skillChanging] > 0) {
+      newSkills[skillChanging]--;
+      setSkills(newSkills);
+      setPointAvailable(newPoint + 1);
+    }
   };
 
   return (
@@ -55,11 +58,12 @@ const Heroe = () => {
       <Header>{titleHeader}</Header>
       <div className={styles.configurator}>
         <Person
-          {...person}
+          image={image}
+          skills={skills}
           points={pointAvailable}
           changeImage={imageHandler}
-          addSkills={SkillPointsHandler}
-          removecSkills={SkillPointsHandler}
+          addSkills={addSkillHandler}
+          removeSkills={removeSkillHandler}
         />
         <div>Choix de l'arme</div>
       </div>
