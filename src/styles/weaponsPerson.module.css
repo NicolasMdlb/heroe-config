@@ -5,6 +5,15 @@
 }
 
 .weaponsPerson {
-    grid-column-start: 1;
-    grid-column-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+@media (max-width: 800px) {
+  .weapons {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 50% 50%;
+    row-gap: 2em;
+  }
 }

@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  place-self: center;
 }
 
 .weapon:hover {
@@ -10,6 +11,7 @@
   -webkit-box-shadow: 0px 0px 5px 3px #bdbdbd;
   box-shadow: 0px 0px 5px 3px #e0e0e0;
   border-radius: 6px;
+  place-self: center;
 }
 
 .weaponSelected {
@@ -21,11 +23,12 @@
   border-radius: 6px;
   -webkit-box-shadow: 0px 0px 5px 3px #bdbdbd;
   box-shadow: 0px 0px 5px 3px #e0e0e0;
+  place-self: center;
 }
 
 .weaponSelected:hover {
     transform: scale(1.2);
-
     background-color: #e0e0e0;
     border-radius: 6px;
+    place-self: center;
   }
