@@ -10,10 +10,19 @@ const ImagePerson = (props) => {
   let imgPerso = props.num === 1 ? Image1 : props.num === 2 ? Image2 : Image3;
 
   return (
-    <div className={styles.selectImage}>
-      <ArrowCircleLeftIcon sx={{ fontSize: 40, color: cyan.A400 }} onClick={() => props.changeImage(-1)} />
-      <img src={imgPerso} alt="personnage" />
-      <ArrowCircleRightIcon sx={{ fontSize: 40, color: cyan.A400 }} onClick={() =>  props.changeImage(+1)}/>
+    <div>
+      <h4>Sélection du personnage</h4>
+      <div className={styles.selectImage}>
+        <ArrowCircleLeftIcon
+          sx={{ fontSize: 40, color: cyan.A400 }}
+          onClick={() => props.changeImage(-1)}
+        />
+        <img src={imgPerso} alt="personnage" />
+        <ArrowCircleRightIcon
+          sx={{ fontSize: 40, color: cyan.A400 }}
+          onClick={() => props.changeImage(+1)}
+        />
+      </div>
     </div>
   );
 };

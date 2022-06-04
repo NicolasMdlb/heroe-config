@@ -1,0 +1,31 @@
+.weapon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.weapon:hover {
+  transform: scale(1.2);
+  -webkit-box-shadow: 0px 0px 5px 3px #bdbdbd;
+  box-shadow: 0px 0px 5px 3px #e0e0e0;
+  border-radius: 6px;
+}
+
+.weaponSelected {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  -webkit-box-shadow: 0px 0px 5px 3px #bdbdbd;
+  box-shadow: 0px 0px 5px 3px #e0e0e0;
+}
+
+.weaponSelected:hover {
+    transform: scale(1.2);
+
+    background-color: #e0e0e0;
+    border-radius: 6px;
+  }
