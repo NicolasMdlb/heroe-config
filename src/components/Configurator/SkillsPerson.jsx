@@ -3,12 +3,12 @@ import Skill from "./Skill";
 const SkillsPerson = (props) => {
   return (
     <div>
-      <h4>Caractéristiques : </h4>
-      <p>
+      <h4>
+        Caractéristiques :{" "}
         <em>
-          Dispo : {props.points} point{props.points > 1 && "s"}
+          Dispo {props.points} point{props.points > 1 && "s"}
         </em>
-      </p>
+      </h4>
       <Skill
         points={props.skills.agility}
         skill="agility"

@@ -1,14 +1,20 @@
-.skills-person {
-  grid-area: skillsPerson;
-}
-
-.skillsPoint {
+.skillAll{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0.5em;
+}
+
+.skillAll > span{
+  width: 9em;
+}
+
+.skillPoint {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  padding-left: 3em;
-  padding-right: 3em;
+  width: 100%;
 }
 
 .arrows {

@@ -5,15 +5,17 @@ import styles from "../../styles/skill.module.css";
 const Skill = (props) => {
   let arrows = [];
 
-  // permet d'afficher les fleches vertes 
+  // permet d'afficher les fleches vertes
   for (let index = 0; index < props.points; index++) {
     arrows.push(<div key={index} className={styles.arrow}></div>);
   }
 
   return (
-    <div className={styles.skills}>
-      <strong>{props.children}</strong>
-      <div className={styles.skillsPoint}>
+    <div className={styles.skillAll}>
+      <span>
+        <strong>{props.children}</strong>
+      </span>
+      <div className={styles.skillPoint}>
         <RemoveCircleTwoToneIcon onClick={() => props.remove(props.skill)} />
         <div className={styles.arrows}>{arrows}</div>
         <AddCircleTwoToneIcon onClick={() => props.add(props.skill)} />

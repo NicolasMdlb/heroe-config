@@ -3,9 +3,8 @@
   grid-template-rows: auto ;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 10px;
-  row-gap: 15px;
   padding: 30px;
-  margin: 30px;
+  margin: 15px;
   -webkit-box-shadow: 0px 0px 21px 3px #bdbdbd;
   box-shadow: 0px 0px 21px 3px #e0e0e0;
   border-radius: 1em 1em 1em 1em;
