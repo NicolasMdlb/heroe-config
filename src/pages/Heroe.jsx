@@ -64,6 +64,17 @@ const Heroe = () => {
     setWeaponPerson(weaponChanging);
   }
 
+  /**
+   * Réinitialise le configurateur à l'état initial
+   */
+  const handleResetPerson =() => {
+    setPointAvailable(7);
+    setImagePerson(1);
+    setNamePerson("");
+    setWeaponPerson("");
+    setSkillsPerson({ agility: 0, brain: 0, power: 0 });
+  }
+
   return (
     <>
       <Header>{titleHeader}</Header>
@@ -81,7 +92,7 @@ const Heroe = () => {
         />
       </div>
       <div className={styles.validPerson}>
-        <Button styles="delete" click={() => alert("init")}>
+        <Button styles="delete" click={() => handleResetPerson()}>
           Réinitialiser
         </Button>
         <Button styles="add" click={() => alert("create")}>
