@@ -1,10 +1,11 @@
 import RemoveCircleTwoToneIcon from "@mui/icons-material/RemoveCircleTwoTone";
 import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
-import styles from "../../styles/skills.module.css";
+import styles from "../../styles/skill.module.css";
 
 const Skill = (props) => {
   let arrows = [];
 
+  // permet d'afficher les fleches vertes 
   for (let index = 0; index < props.points; index++) {
     arrows.push(<div key={index} className={styles.arrow}></div>);
   }

@@ -1,0 +1,10 @@
+.weapons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.weaponsPerson {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}

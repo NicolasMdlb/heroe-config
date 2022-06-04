@@ -1,17 +1,13 @@
 import ImagePerson from "./../Configurator/ImagePerson";
 import SkillsPerson from "./SkillsPerson";
+import WeaponsPerson from "./WeaponsPerson";
 
 const Person = (props) => {
   return (
     <>
-      <div>
-        <h4>Sélection du personnage</h4>
-        <ImagePerson num={props.image} changeImage={props.changeImage} />
-      </div>
-      <div>
-        <h4>Caractéristiques : </h4>
-        <SkillsPerson skills={props.skills} points={props.points} clickAdd={props.addSkills} clickRemove={props.removeSkills}/>
-      </div>
+      <ImagePerson num={props.image} changeImage={props.changeImage} />
+      <SkillsPerson skills={props.skills} points={props.points} clickAdd={props.addSkills} clickRemove={props.removeSkills}/>
+      <WeaponsPerson weapons={props.weapons} weapon={props.weapon} chooseWeapon={props.chooseWeapon}/>
     </>
   );
 };
