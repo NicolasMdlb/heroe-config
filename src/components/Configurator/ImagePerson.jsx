@@ -11,7 +11,7 @@ const ImagePerson = (props) => {
 
   return (
     <div>
-      <h4>Sélection du personnage</h4>
+      <h4>Sélection du personnage :</h4>
       <div className={styles.selectImage}>
         <ArrowCircleLeftIcon
           sx={{ fontSize: 40, color: cyan.A400 }}
