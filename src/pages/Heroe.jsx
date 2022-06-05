@@ -2,17 +2,40 @@ import Header from "./../components/Header";
 import Button from "./../components/Button";
 import Person from "./../components/Configurator/Person";
 import styles from "./../styles/heroe.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const Heroe = () => {
   const titleHeader = "Configurer votre personnage";
   const [pointAvailable, setPointAvailable] = useState(7);
+  const [loading, setLoading] = useState(false);
   const [imagePerson, setImagePerson] = useState(1);
-  const [namePerson, setNamePerson] = useState("");
+  const [namePerson, setNamePerson] = useState("John Doe");
   const [weaponPerson, setWeaponPerson] = useState("");
-  const [skillsPerson, setSkillsPerson] = useState({ agility: 0, brain: 0, power: 0 });
+  const [weaponsList, setWeaponsList] = useState(null);
+  const [skillsPerson, setSkillsPerson] = useState({
+    agility: 0,
+    brain: 0,
+    power: 0,
+  });
 
-  const weaponsList = ["Arc", "Fléau", "Epée", "Hache"];
+  // récupère les données sur FireBase dans ce cas.
+  useEffect(() => {
+    setLoading(true);
+    const fetchWeapons = async () => {
+      try {
+        const { data: response } = await axios.get(
+          "https://heroeconfig-default-rtdb.europe-west1.firebasedatabase.app/weapons.json"
+        );
+        setWeaponsList(Object.values(response));
+        setLoading(false);
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
+    fetchWeapons();
+  }, []);
 
   /**
    * Gestion de la sélection de l'image du personnage !!! att: Aujourd'hui il y a que trois images
@@ -25,6 +48,14 @@ const Heroe = () => {
         oldImage + num > 3 ? 1 : oldImage + num < 1 ? 3 : oldImage + num;
       return newImage;
     });
+  };
+
+  /**
+   * Permet de changer le nom
+   * @param {string} nameChanging
+   */
+  const nameHandler = (nameChanging) => {
+      setNamePerson(nameChanging);
   };
 
   /**
@@ -58,44 +89,76 @@ const Heroe = () => {
 
   /**
    * Permet la sélection de l'arme
-   * @param {string} weaponChanging 
+   * @param {string} weaponChanging
    */
-  const chooseWeaponHandler = (weaponChanging) => {
+  const weaponHandler = (weaponChanging) => {
     setWeaponPerson(weaponChanging);
-  }
+  };
+
+  /**
+   * Créer le heroe en base de donnée
+   */
+  const handleCreateHeroe = () => {
+    const heroe = {
+      image: imagePerson,
+      namePerson: namePerson,
+      skills: skillsPerson,
+      weapon: weaponPerson,
+    };
+
+    setLoading(true);
+    axios
+      .post(
+        "https://heroeconfig-default-rtdb.europe-west1.firebasedatabase.app/heroes.json",
+        heroe
+      )
+      .then((response) => {
+        console.log(response);
+        setLoading(false);
+        handleResetPerson();
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+        handleResetPerson();
+      });
+  };
 
   /**
    * Réinitialise le configurateur à l'état initial
    */
-  const handleResetPerson =() => {
+  const handleResetPerson = () => {
     setPointAvailable(7);
     setImagePerson(1);
-    setNamePerson("");
+    setNamePerson("John Doe");
     setWeaponPerson("");
     setSkillsPerson({ agility: 0, brain: 0, power: 0 });
-  }
+  };
 
   return (
     <>
       <Header>{titleHeader}</Header>
       <div className={styles.configurator}>
         <Person
-          image={imagePerson}
-          skills={skillsPerson}
+          weapons={weaponsList}
+          loading={loading}
           points={pointAvailable}
+          name={namePerson}
+          changeName={nameHandler}
+          image={imagePerson}
           changeImage={imageHandler}
+          skills={skillsPerson}
           addSkills={addSkillHandler}
           removeSkills={removeSkillHandler}
           weapon={weaponPerson}
-          weapons={weaponsList}
-          chooseWeapon={chooseWeaponHandler}
+          chooseWeapon={weaponHandler}
         />
       </div>
       <div className={styles.validPerson}>
         <Button styles="delete" click={() => handleResetPerson()}>
           Réinitialiser
         </Button>
-        <Button styles="add" click={() => alert("create")}>
+        <Button styles="add" click={() => handleCreateHeroe()}>
           Créer
         </Button>
       </div>
