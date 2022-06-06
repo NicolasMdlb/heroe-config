@@ -1,0 +1,40 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  margin: 15px;
+  -webkit-box-shadow: 0px 0px 21px 3px #bdbdbd;
+  box-shadow: 0px 0px 21px 3px #e0e0e0;
+  border-radius: 1em 1em 1em 1em;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.content {
+  width: 100%;
+}
+
+.persoWeapon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.persoWeapon > img {
+  height: 80px;
+}
+
+.persoWeapon > h3,
+.persoWeapon > p {
+  padding: 0px;
+  margin: 0px;
+}
