@@ -5,7 +5,7 @@ import styles from "./../styles/heroe.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Heroe = () => {
+const Heroe = (props) => {
   const titleHeader = "Configurer votre personnage";
   const [pointAvailable, setPointAvailable] = useState(7);
   const [loading, setLoading] = useState(false);
@@ -24,10 +24,10 @@ const Heroe = () => {
     setLoading(true);
     const fetchWeapons = async () => {
       try {
-        const { data: response } = await axios.get(
+        const { data: responseWeapons } = await axios.get(
           "https://heroeconfig-default-rtdb.europe-west1.firebasedatabase.app/weapons.json"
         );
-        setWeaponsList(Object.values(response));
+        setWeaponsList(Object.values(responseWeapons));
         setLoading(false);
       } catch (error) {
         console.error(error.message);
@@ -55,7 +55,7 @@ const Heroe = () => {
    * @param {string} nameChanging
    */
   const nameHandler = (nameChanging) => {
-      setNamePerson(nameChanging);
+    setNamePerson(nameChanging);
   };
 
   /**
@@ -101,7 +101,7 @@ const Heroe = () => {
   const handleCreateHeroe = () => {
     const heroe = {
       image: imagePerson,
-      namePerson: namePerson,
+      name: namePerson,
       skills: skillsPerson,
       weapon: weaponPerson,
     };
@@ -116,6 +116,7 @@ const Heroe = () => {
         console.log(response);
         setLoading(false);
         handleResetPerson();
+        props.refresh();
       })
       .catch((error) => {
         console.log(error);
