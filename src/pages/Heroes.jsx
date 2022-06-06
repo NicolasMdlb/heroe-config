@@ -32,10 +32,14 @@ const Heroes = () => {
         <h2>Liste des héros</h2>
       </header>
       <div className={styles.displayCard}>
-        {heroes.length > 0 &&
+        {loading ? (
+          <p>Chargement...</p>
+        ) : (
+          heroes.length > 0 &&
           heroes.map((heroe, index) => {
             return <HeroeCard key={index} {...heroe} />;
-          })}
+          })
+        )}
       </div>
     </div>
   );

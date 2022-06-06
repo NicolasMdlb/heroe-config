@@ -5,7 +5,7 @@ import styles from "./../styles/heroe.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Heroe = (props) => {
+const Heroe = () => {
   const titleHeader = "Configurer votre personnage";
   const [pointAvailable, setPointAvailable] = useState(7);
   const [loading, setLoading] = useState(false);
@@ -116,7 +116,6 @@ const Heroe = (props) => {
         console.log(response);
         setLoading(false);
         handleResetPerson();
-        props.refresh();
       })
       .catch((error) => {
         console.log(error);
